@@ -1,0 +1,10 @@
+qovery:
+  key: jtme9xokl7cc63cp/nv0cbd0nz2bft48v/cy79hjbsa1b7gd4l
+application:
+  name: simple-example-with-postgresql
+  project: simple-example-with-pql
+  publicly_accessible: true
+databases:
+- type: postgresql
+  version: "11.5"
+  name: my-postgresql
