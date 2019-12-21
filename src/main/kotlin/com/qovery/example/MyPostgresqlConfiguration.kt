@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import java.io.File
+import java.io.FileNotFoundException
 import javax.sql.DataSource
 
 
@@ -17,7 +18,11 @@ class MyPostgresqlConfiguration {
 
     @Bean
     fun getDataSource(): DataSource? {
-        val f = ClassPathResource(".qovery${File.separator}local_configuration.json").file
+        val f = try {
+            ClassPathResource(".qovery${File.separator}local_configuration.json").file
+        } catch (e: FileNotFoundException) {
+            null
+        }
 
         val databaseConfiguration = Qovery(f).getDatabaseConfiguration("my-postgresql")
         val host = databaseConfiguration.host
