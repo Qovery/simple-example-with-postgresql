@@ -24,7 +24,8 @@ class MyPostgresqlConfiguration {
             null
         }
 
-        val databaseConfiguration = Qovery(f).getDatabaseConfiguration("my-postgresql")
+        val databaseConfiguration = Qovery(f).getDatabaseConfiguration("my-postgresql") ?: return getTestDatasource()
+
         val host = databaseConfiguration.host
         val port = databaseConfiguration.port
         val username = databaseConfiguration.username
@@ -37,5 +38,10 @@ class MyPostgresqlConfiguration {
                 .password(password)
                 .build()
     }
+
+    private fun getTestDatasource(): DataSource = DataSourceBuilder.create()
+            .driverClassName("org.h2.Driver")
+            .url("jdbc:h2:mem")
+            .build()
 
 }
