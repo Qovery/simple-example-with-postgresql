@@ -8,3 +8,9 @@ databases:
 - type: postgresql
   version: "11.5"
   name: my-postgresql
+routes:
+- name: main
+  routes:
+  - application_name: simple-example-with-postgresql
+    paths:
+    - /*
