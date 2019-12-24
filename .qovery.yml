@@ -14,3 +14,4 @@ routers:
   - application_name: simple-example-with-postgresql
     paths:
     - /*
+      /api/v1/*
