@@ -1,5 +1,7 @@
 package com.qovery.example.controllers
 
+import com.qovery.example.repositories.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/")
 class RootController {
 
+    @Autowired
+    private lateinit var userRepository: UserRepository
+
     @GetMapping
-    fun sayHello() = mapOf("results" to listOf(mapOf("name" to "john", "age" to 33, "city" to "Paris")))
+    fun list() = mapOf("users" to userRepository.findAll())
 
 }
