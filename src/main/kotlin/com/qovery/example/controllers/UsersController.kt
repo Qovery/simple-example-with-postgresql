@@ -21,4 +21,7 @@ class UsersController {
     @PostMapping
     fun create(@RequestBody user: User): User = userRepository.save(user)
 
+    @DeleteMapping(path = ["{id}"])
+    fun delete(@PathVariable id: Long) = userRepository.deleteById(id)
+
 }
