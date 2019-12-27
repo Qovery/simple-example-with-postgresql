@@ -4,6 +4,7 @@ import com.qovery.example.models.User
 import com.qovery.example.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 /**
  * Created by evoxmusic on 25/12/2019.
@@ -23,5 +24,14 @@ class UsersController {
 
     @DeleteMapping(path = ["{id}"])
     fun delete(@PathVariable id: Long) = userRepository.deleteById(id)
+
+    @PutMapping(path = ["{id}"])
+    fun update(@PathVariable id: Long, @RequestBody user: User): Optional<User> = userRepository.findById(id).map {
+        it.copy(
+                firstName = user.firstName,
+                lastName = user.lastName,
+                city = user.city
+        )
+    }.map { userRepository.save(it) }
 
 }
