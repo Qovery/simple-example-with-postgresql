@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import java.io.FileNotFoundException
 import javax.sql.DataSource
+import kotlin.streams.toList
 
 
 /**
@@ -23,7 +24,9 @@ class MyPostgresqlConfiguration {
             null
         }
 
-        val databaseConfiguration = Qovery(f).getDatabaseConfiguration("my-postgresql") ?: return getTestDatasource()
+        // Find and take the first PostgreSQL database from the qovery conf
+        val databaseConfiguration = Qovery(f).listDatabaseConfiguration()?.toList()?.find { it.type == "POSTGRESQL" }
+                ?: return getTestDatasource()
 
         val host = databaseConfiguration.host
         val port = databaseConfiguration.port
