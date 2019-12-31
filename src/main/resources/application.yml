@@ -10,4 +10,5 @@ spring:
     default-property-inclusion: non_empty
   jpa:
     hibernate:
-      ddl-auto: none
+      # Don't do this at home...
+      ddl-auto: update
