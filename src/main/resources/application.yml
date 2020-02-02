@@ -8,6 +8,8 @@ spring:
     serialization:
       write-dates-as-timestamps: false
     default-property-inclusion: non_empty
+  datasource:
+    url: "jdbc"
   jpa:
     hibernate:
       # Don't do this at home...
