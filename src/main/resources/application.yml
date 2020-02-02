@@ -9,7 +9,9 @@ spring:
       write-dates-as-timestamps: false
     default-property-inclusion: non_empty
   datasource:
-    url: "jdbc"
+    url: "jdbc:postgresql://${QOVERY_DATABASE_MY_POSTGRESQL_3498225_HOST}:5432/${QOVERY_DATABASE_MY_POSTGRESQL_3498225_DATABASE}"
+    username: ${QOVERY_DATABASE_MY_POSTGRESQL_3498225_USERNAME}
+    password: ${QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD}
   jpa:
     hibernate:
       # Don't do this at home...
